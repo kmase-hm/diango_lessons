@@ -7,7 +7,12 @@ from . import views
 
 urlpatterns = [
     # urlの末尾=>関数の紐づけ
-   path('members/', views.members, name='members'),
+   path('members/', views.members, name='members'), #「members/でviewsのmembersを呼び出しますよ」
+   path('members/details/<int:id>', views.details, name='details'),
+   
+   #path('cart_add/101/ => view.cart_add(101)), カートに商品101を追加する、というようなとき　動作名を書くことが多い　
    path('test/', views.test, name='test'),
    path('memberadd/', views.memberadd, name='memberadd'),
+   path('mycareer/', views.mycareer, name='mycareer'),
+   path('book/', views.books, name='book'),
 ]
