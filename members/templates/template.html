@@ -1,0 +1,67 @@
+<h1>Welcome Everyone</h1>
+{% comment %}
+   <h1>Welcome ladies and gentlemen</h1>
+{% endcomment %}
+
+<h1>Welcome{# Everyone#}</h1>
+
+<h1>Hello {{ firstname }}, How are you?</h1>
+
+<h1> {{ price }}円です, いかがですか？</h1>
+
+{% with firstname="Tobias" %}
+   <h1>Hello {{ firstname }}, how are you?</h1>
+{% endwith %}
+
+{% if greeting == 1 %}
+   <h1>Hello</h1>
+{% elif greeting == 3 %}
+    <h1>Bonjour</h1>
+{% else %}
+   <h1>Bye</h1>
+{% endif %}
+
+{% with var1=x var2=x %}
+   {% if var1 is var2 %}
+      <h1>YES</h1>
+   {% else %}
+      <h1>NO</h1>
+   {% endif %}
+{% endwith %}
+
+<ul>
+   {% for x in fruits %}
+      <li>{{ x }}</li>
+   {% empty %}
+      <li>No members</li>
+   {% endfor %}
+</ul>
+
+<ul>
+   {% for x in fruits %}
+      <li
+        {% if forloop.first %}
+           style='background-color:rgba(4, 239, 251, 0.902);'
+        {% endif %}
+      >{{ x }}</li>
+   {% endfor %}
+</ul>
+
+<ul>
+   {% for x in fruits %}
+      <li
+        {% if forloop.last %}
+          style='background-color:rgba(246, 255, 0, 0.927);'
+        {% endif %}
+      >{{ x }}</li>
+   {% endfor %}
+</ul>
+
+<ul>
+   {% for x in fruits %}
+      <li>{{ forloop.revcounter0}}</li>
+   {% endfor %}
+</ul>
+
+    
+{% include 'footer.html' %}

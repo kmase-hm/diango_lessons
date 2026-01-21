@@ -33,8 +33,7 @@ def members(request):
    mymembers = Member.objects.all().values()
    print(mymembers)
    template = loader.get_template('all_members.html')
-  
-   #HTMLに渡す辞書データ
+     #HTMLに渡す辞書データ
    context = {
       'mymembers': mymembers,
       'myname':'Taro suzuki' 
@@ -61,3 +60,28 @@ def books(request):
       'books': books,
    }
    return HttpResponse(template.render(context, request)) 
+
+def main(request):
+   template = loader.get_template('main.html')
+   return HttpResponse(template.render())
+
+def testing(request):
+   template = loader.get_template('template.html')
+ 
+   context = {
+         # 辞書
+         # {{キー名}}でHTMLへ手渡しできる
+          'firstname': 'Yukari',
+          'price': [12000, 50000],
+          'greeting':3,
+          'fruits':['apple','banana','cherry','dragonfruit'],
+    }
+   
+   return HttpResponse(template.render(context, request))
+
+def mypage(request):
+   template = loader.get_template('mypage.html')
+   context = {
+      'apps':['夜活支援','旅日記','とりあえず家計簿','落書き長']
+   }
+   return HttpResponse(template.render(context, request))

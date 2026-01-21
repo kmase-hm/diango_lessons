@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     # urlの末尾=>関数の紐づけ
+   path('', views.main, name='main'),
    path('members/', views.members, name='members'), #「members/でviewsのmembersを呼び出しますよ」
    path('members/details/<int:id>', views.details, name='details'),
    
@@ -15,4 +16,6 @@ urlpatterns = [
    path('memberadd/', views.memberadd, name='memberadd'),
    path('mycareer/', views.mycareer, name='mycareer'),
    path('book/', views.books, name='book'),
+   path('testing/', views.testing, name='testing'),
+   path('members/mypage/',views.mypage, name='mypage'),
 ]

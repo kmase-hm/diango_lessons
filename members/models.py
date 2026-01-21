@@ -12,6 +12,10 @@ class Member(models.Model):
    joined_date = models.DateField(null = True)
    #ここのnull = Trueは非常に大事
 
+   # オブジェクト（データ）の文字列表現を返す
+   def __str__(self):   
+      return f"{self.firstname} {self.lastname}";
+
 class Book(models.Model):
     #列名＝データ型クラス（VARCHAR（255））
    title = models.CharField(max_length=255)

@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Members</title>
-</head>
-<body>
-        
+{% extends "master.html" %}
+
+{% block title %}
+My Tennis Club - List of all members
+{% endblock %}
+
+{% block content %}
+<p><a href="/">HOME</a></p>
 <h1>Members</h1>
- 
-<!-- <ul>
-   {% for x in mymembers %}
-      <li>{{ x.id }} {{ x.firstname }}</li>
 
-   {% endfor %}　forが終わっているという印-->
-
-<!-- </ul> --> 
 <ul>
-   {% for x in mymembers %}
-      <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
-   {% endfor %}
+    {% for x in mymembers %}
+    <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    {% endfor %}
 </ul>
-
-{{myname}}
-    
-</body>
-</html>
+{% endblock %}
