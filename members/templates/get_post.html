@@ -1,0 +1,16 @@
+<!-- GET / POST の動作確認用テンプレート -->
+
+<!-- method="post" なので、このフォームを送信すると POST リクエストになる -->
+<form action="" method="post">
+    {% csrf_token %}
+    <!-- 送信ボタン。押すと POST リクエストが views.py に送られる -->
+    <button type="submit">送信</button>
+</form>
+
+<!-- action="" のリンクは自分自身の URL を再読み込みするので GET リクエストになる -->
+<a href="">自分自身のファイルを呼び出す＝更新</a>
+
+<hr>
+
+<!-- views.py から渡された message を表示する -->
+get or post: <strong>{{ message }}</strong>

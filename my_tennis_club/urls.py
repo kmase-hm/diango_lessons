@@ -22,4 +22,5 @@ urlpatterns = [
    # https://ドメイン名/　''=ドメイン名がない＝ 直下に置くよ、という言い
    path('', include('members.urls')),
    path('admin/', admin.site.urls),
+   
 ]

@@ -18,4 +18,7 @@ urlpatterns = [
    path('book/', views.books, name='book'),
    path('testing/', views.testing, name='testing'),
    path('members/mypage/',views.mypage, name='mypage'),
+   path('get_post/', views.get_post, name='get_post'),
+   path('nameform/', views.nameform, name='nameform'),
+   path('add_member_form/', views.add_member_form, name='add_member_form'),
 ]

@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Member
 from .models import Book
+from django.shortcuts import redirect, render
+from .forms import MemberForm
+
 
 # Create your views here.
 # パスと連動した関数を書く
@@ -85,3 +88,55 @@ def mypage(request):
       'apps':['夜活支援','旅日記','とりあえず家計簿','落書き長']
    }
    return HttpResponse(template.render(context, request))
+
+# Django のビュー（画面の処理を書く場所）
+from django.shortcuts import render
+
+def get_post(request):
+    # message という変数を初期化（最初は何も入れない）
+    message = "GET"  # Noneを"GET"に★
+
+   #  # ブラウザから送られてきた HTTP メソッドを判別　★コメントアウト
+   #  if request.method == "GET":
+   #      # GET のときに行う処理
+   #      # ページを開いたとき（リンクをクリックしたとき）など
+   #      message = "GET"
+
+    if request.method == "POST":  #elifをifにした　★
+        # POST のときに行う処理
+        # フォームを送信したときなど
+        message = "POST"
+
+    # テンプレートに渡すデータを辞書でまとめる
+    context = {'message': message}
+
+    # get_post.html を表示し、context の内容をテンプレートに渡す
+    return render(request, 'get_post.html', context)
+
+
+def nameform(request):
+    display_name = None
+    display_email = None
+    # フォームに入力されたデータの取得
+    if request.method == 'POST':
+        display_name = request.POST.get('your_name')
+        display_email = request.POST.get('your_email')
+    context = {
+        'display_name': display_name,
+        'display_email': display_email,
+    }
+
+    return render(request, 'nameform.html', context)
+
+def add_member_form(request):
+    if request.method == 'POST':
+        form = MemberForm(request.POST)
+        if form.is_valid(): # 入力内容が正しいか自動チェック
+            # クリーニングされたデータを取得して保存
+            data = form.cleaned_data
+            Member.objects.create(**data) # ←備考説明あり
+            return redirect('members')
+    else:
+        form = MemberForm() # 空のフォームを作成
+    
+    return render(request, 'add_form.html', {'form': form})
